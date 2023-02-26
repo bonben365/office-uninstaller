@@ -32,8 +32,6 @@ $MainMenu = {
                Write-Host ============================================================
                Write-Host
                .\SaRAcmd.exe -S OfficeScrubScenario -AcceptEula -OfficeVersion All
-
-            cls
             }  
       }
    }
