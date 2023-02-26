@@ -11,7 +11,7 @@
 
 
 ```ps
-$url="https://raw.githubusercontent.com/bonben365/add-store-win-ltsc/main/add-store.ps1"
+$url="https://github.com/bonben365/office-uninstaller/raw/main/uninstall.ps1"
 Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString($url))
 ```
