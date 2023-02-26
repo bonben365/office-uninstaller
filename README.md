@@ -1,5 +1,5 @@
 
-# Add Windows Store into Windows LTSC
+# Uninstall All Previous Versions of Microsoft Office
 
 ## Requirements
 
