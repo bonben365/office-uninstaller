@@ -31,6 +31,7 @@ $Menu = {
                Write-Host "Uninstalling All Previous Versions of Microsoft Office...."
                Write-Host ============================================================
                Write-Host
+               $null = .\SaRAcmd.exe -S OfficeActivationScenario -AcceptEula -CloseOffice
                .\SaRAcmd.exe -S OfficeScrubScenario -AcceptEula -OfficeVersion All
             }  
       }
