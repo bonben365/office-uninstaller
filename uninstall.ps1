@@ -17,23 +17,27 @@ $Menu = {
    cls
    Invoke-Command $Menu
    $Select = Read-Host
+
+   $uninstall = {
+      $null = New-Item -Path $env:temp\uninstall -ItemType Directory -Force
+      Set-Location $env:temp\uninstall
+      $fileName = 'configuration.xml'
+      $null = New-Item $fileName -ItemType File -Force
+      Add-Content $fileName -Value '<Configuration>'
+      Add-Content $fileName -Value '<Remove All="True"/>'
+      Add-Content $fileName -Value '</Configuration>'
+      $uri = 'https://github.com/bonben365/office365-installer/raw/main/setup.exe'
+      $null = Invoke-WebRequest -Uri $uri -OutFile 'setup.exe' -ErrorAction:SilentlyContinue
+      .\setup.exe /configure .\configuration.xml
+  }
+
    Switch ($Select)
       {
          #1. Uninstall All Previous Versions of Microsoft Office
-          1 {
-               Set-Location $env:temp
-               $uri = 'https://aka.ms/SaRA_CommandLineVersionFiles'
-               $null = Invoke-WebRequest -Uri $uri -OutFile 'SaRACmd.zip' -ErrorAction:SilentlyContinue
-               $null = Expand-Archive SaRACmd.zip -Force -ErrorAction:SilentlyContinue
-               Set-Location "$((Get-Location).Path)\SaRACmd"
-               Write-Host
-               Write-Host ============================================================
-               Write-Host "Uninstalling All Previous Versions of Microsoft Office...."
-               Write-Host ============================================================
-               Write-Host
-               $null = .\SaRAcmd.exe -S OfficeActivationScenario -AcceptEula -CloseOffice
-               .\SaRAcmd.exe -S OfficeScrubScenario -AcceptEula -OfficeVersion All
-            }  
+          1 {Invoke-Command $uninstall}  
       }
    }
    While ($Select -ne 3)
+
+
+   
