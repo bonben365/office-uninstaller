@@ -11,8 +11,8 @@
 
 
 ```ps
-$url="https://github.com/bonben365/office-uninstaller/raw/main/uninstall.ps1"
 Set-ExecutionPolicy Bypass -Scope Process -Force
+$url="https://github.com/bonben365/office-uninstaller/raw/main/uninstall.ps1"
 iex ((New-Object System.Net.WebClient).DownloadString($url))
 ```
 ➡️Please inspect https://github.com/bonben365/office-uninstaller/raw/main/uninstall.ps1 prior to running any of these scripts to ensure safety. We already know it's safe, but you should verify the security and contents of any script from the internet you are not familiar with.
