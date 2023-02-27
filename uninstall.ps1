@@ -1,4 +1,4 @@
-$MainMenu = {
+$Menu = {
    Write-Host " ******************************************************"
    Write-Host " * Microsoft Office Installation Script               *" 
    Write-Host " * Date:    26/02/2023                                *" 
@@ -15,7 +15,7 @@ $MainMenu = {
    
    Do { 
    cls
-   Invoke-Command $MainMenu
+   Invoke-Command $Menu
    $Select = Read-Host
    Switch ($Select)
       {
@@ -23,8 +23,8 @@ $MainMenu = {
           1 {
                Set-Location $env:temp
                $uri = 'https://aka.ms/SaRA_CommandLineVersionFiles'
-               Invoke-WebRequest -Uri $uri -OutFile 'SaRACmd.zip' -ErrorAction:SilentlyContinue | Out-Null
-               Expand-Archive SaRACmd.zip -Force -ErrorAction:SilentlyContinue | Out-Null
+               $null = Invoke-WebRequest -Uri $uri -OutFile 'SaRACmd.zip' -ErrorAction:SilentlyContinue
+               $null = Expand-Archive SaRACmd.zip -Force -ErrorAction:SilentlyContinue
                Set-Location "$((Get-Location).Path)\SaRACmd"
                Write-Host
                Write-Host ============================================================
@@ -35,4 +35,4 @@ $MainMenu = {
             }  
       }
    }
-   While ($Select -ne 2)
+   While ($Select -ne 3)
