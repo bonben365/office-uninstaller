@@ -55,7 +55,7 @@ $Menu = {
           1 {Invoke-Command $uninstall}  
       }
    }
-   While ($Select -ne 3)
+   While ($Select -ne 2)
 
 
    
