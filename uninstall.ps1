@@ -29,6 +29,24 @@ $Menu = {
       $uri = 'https://github.com/bonben365/office365-installer/raw/main/setup.exe'
       $null = Invoke-WebRequest -Uri $uri -OutFile 'setup.exe' -ErrorAction:SilentlyContinue
       .\setup.exe /configure .\configuration.xml
+
+      Write-Host
+      Write-Host ============================================================
+      Write-Host "Unnstalling...."
+      Write-Host ============================================================
+      Write-Host
+
+      Write-Host
+      Write-Host ============================================================
+      Write-Host "Done...."
+      Write-Host ============================================================
+      Write-Host
+
+      Start-Sleep -Seconds 3
+
+      # Cleanup
+      Set-Location "$env:temp"
+      Remove-Item $env:temp\uninstall -Recurse -Force
   }
 
    Switch ($Select)
