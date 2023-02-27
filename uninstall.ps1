@@ -27,7 +27,7 @@ $Menu = {
       Add-Content $fileName -Value '<Remove All="True"/>'
       Add-Content $fileName -Value '</Configuration>'
       $uri = 'https://github.com/bonben365/office365-installer/raw/main/setup.exe'
-      $null = Invoke-WebRequest -Uri $uri -OutFile 'setup.exe' -ErrorAction:SilentlyContinue
+      Invoke-WebRequest -Uri $uri -OutFile 'setup.exe' -ErrorAction:SilentlyContinue
       .\setup.exe /configure .\configuration.xml
 
       Write-Host
