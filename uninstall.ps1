@@ -19,15 +19,15 @@ $Menu = {
    $Select = Read-Host
 
    $uninstall = {
-      $null = New-Item -Path $env:temp\uninstall -ItemType Directory -Force
-      Set-Location $env:temp\uninstall
+      $null = New-Item -Path $env:temp\c2r -ItemType Directory -Force
+      Set-Location $env:temp\c2r
       $fileName = 'configuration.xml'
       $null = New-Item $fileName -ItemType File -Force
       Add-Content $fileName -Value '<Configuration>'
       Add-Content $fileName -Value '<Remove All="True"/>'
       Add-Content $fileName -Value '</Configuration>'
       $uri = 'https://github.com/bonben365/office365-installer/raw/main/setup.exe'
-      Invoke-WebRequest -Uri $uri -OutFile 'setup.exe' -ErrorAction:SilentlyContinue
+      (New-Object Net.WebClient).DownloadFile($uri, "$env:temp\c2r\setup.exe")
       .\setup.exe /configure .\configuration.xml
 
       Write-Host
@@ -46,7 +46,7 @@ $Menu = {
 
       # Cleanup
       Set-Location "$env:temp"
-      Remove-Item $env:temp\uninstall -Recurse -Force
+      Remove-Item $env:temp\c2r -Recurse -Force
   }
 
    Switch ($Select)
